@@ -8,6 +8,7 @@ import {
   DeleteDateColumn,
 } from 'typeorm';
 import { hashSync } from 'bcrypt';
+import { IsEmail } from 'class-validator';
 
 @Entity({ name: 'users' })
 export class UserEntity {
@@ -21,6 +22,7 @@ export class UserEntity {
   lastName: string;
 
   @Column()
+  @IsEmail()
   email: string;
 
   @Column()

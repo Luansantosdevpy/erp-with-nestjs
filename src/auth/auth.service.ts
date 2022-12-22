@@ -11,7 +11,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async login(user) {
+  async login(user: any) {
     const payload = { sub: user.id, email: user.email };
 
     return {
@@ -22,7 +22,7 @@ export class AuthService {
   async validateUser(email: string, password: string) {
     let user: UserEntity;
     try {
-      user = await this.userService.findOne(email);
+      user = await this.userService.findEmail(email);
     } catch (error) {
       return null;
     }

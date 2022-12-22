@@ -17,9 +17,14 @@ export class UserService {
       select: ['id', 'firstName', 'lastName', 'email'],
     });
   }
-  async findOne(id?: string, email?: string) {
+  async findOne(id?: string) {
     return await this.userRepository.findOne({
-      where: { id, email },
+      where: { id },
+    });
+  }
+  async findEmail(email: string) {
+    return this.userRepository.findOne({
+      where: { email },
     });
   }
   async store(data: CreateUserDto) {
