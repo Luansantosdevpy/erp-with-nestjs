@@ -34,7 +34,7 @@ export class UserEntity {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: string;
 
-  @DeleteDateColumn()
+  @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: string;
 
   @BeforeInsert()
