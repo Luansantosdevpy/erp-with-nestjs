@@ -3,30 +3,37 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  BeforeInsert,
   Entity,
   DeleteDateColumn,
 } from 'typeorm';
-import { hashSync } from 'bcrypt';
 import { IsEmail } from 'class-validator';
 
-@Entity({ name: 'users' })
-export class UserEntity {
+@Entity({ name: 'clients' })
+export class ClientsEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ name: 'first_name' })
-  firstName: string;
-
-  @Column({ name: 'last_name' })
-  lastName: string;
+  @Column({ name: 'full_name' })
+  fullName: string;
 
   @Column()
   @IsEmail()
   email: string;
 
-  @Column()
-  password: string;
+  @Column({ name: 'adress' })
+  adress: string;
+
+  @Column({ name: 'number' })
+  number: number;
+
+  @Column({ name: 'district' })
+  district: string;
+
+  @Column({ name: 'cep' })
+  cep: string;
+
+  @Column({ name: 'cpf' })
+  cpf: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: string;
@@ -34,11 +41,6 @@ export class UserEntity {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: string;
 
-  @DeleteDateColumn({ name: 'deleted_at' })
+  @DeleteDateColumn()
   deletedAt: string;
-
-  @BeforeInsert()
-  hashPassword() {
-    this.password = hashSync(this.password, 10);
-  }
 }
